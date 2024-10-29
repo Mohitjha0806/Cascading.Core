@@ -1,0 +1,25 @@
+﻿@model product
+
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div class="text-center">
+    <h2>Cascading Dropdown Demo</h2>
+    <div class="row from-group pt-4 border m-2">
+        <div class="col-2">
+            Category
+        </div>
+        <div class="col-4">
+            <select asp-for="CategoryId" class="form-select" id="categoryId" asp-items="@ViewBag.categories"></select>
+        </div>
+        <div class="col-2">
+            Product
+        </div>
+        <div class="col-4">
+        </div>
+    </div>
+</div>
