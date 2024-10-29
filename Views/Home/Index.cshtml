@@ -1,25 +1,67 @@
-﻿@model product
+﻿@model Cascading.Core.Models.Entites.Product
 
 
 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-<div class="text-center">
-    <h2>Cascading Dropdown Demo</h2>
-    <div class="row from-group pt-4 border m-2">
-        <div class="col-2">
-            Category
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 text-primary">Cascading Dropdown Demo</h2>
+        <p class="text-muted">Select a category to see related products</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-5 mb-4">
+            <label for="categoryId" class="form-label fw-bold">Category</label>
+            <select asp-for="CategoryId" class="form-select shadow-sm" id="categoryId" asp-items="@ViewBag.categories">
+                <option disabled selected>--Select Category--</option>
+            </select>
         </div>
-        <div class="col-4">
-            <select asp-for="CategoryId" class="form-select" id="categoryId" asp-items="@ViewBag.categories"></select>
-        </div>
-        <div class="col-2">
-            Product
-        </div>
-        <div class="col-4">
+
+        <div class="col-md-5 mb-4">
+            <label for="productsId" class="form-label fw-bold">Product</label>
+            <select asp-for="Id" class="form-select shadow-sm" id="productsId">
+                <option disabled selected>--Select Product--</option>
+            </select>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            getProductByCategoryId();
+        });
+
+        $("#categoryId").change(function () {
+            getProductByCategoryId();
+        });
+
+        function getProductByCategoryId() {
+            $.ajax({
+                url: '@Url.Action("GetProductByCategoryId", "Home")',
+                type: "GET",
+                data: { categoryId: $('#categoryId').val() },
+                success: function (data) {
+                    // Clear previous products from dropdown
+                    $("#productsId").empty();
+                    // Add a default option
+                    $("#productsId").append('<option disabled selected>--Select Product--</option>');
+
+                    // Populate products based on response data
+                    $.each(data, function (index, product) {
+                        $("#productsId").append(
+                            $('<option>', {
+                                value: product.id, // Assuming data has `id` and `name` properties
+                                text: product.name
+                            })
+                        );
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
+}

@@ -256,3 +256,4 @@ C:\Users\welcome\Desktop\Mohit Jha\SFA\Oct-2024\Core Latest\Cascading.Core\bin\D
 C:\Users\welcome\Desktop\Mohit Jha\SFA\Oct-2024\Core Latest\Cascading.Core\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\welcome\Desktop\Mohit Jha\SFA\Oct-2024\Core Latest\Cascading.Core\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\welcome\Desktop\Mohit Jha\SFA\Oct-2024\Core Latest\Cascading.Core\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\welcome\Desktop\Mohit Jha\SFA\Oct-2024\Core Latest\Cascading.Core\obj\Debug\net8.0\Cascading.Core.sourcelink.json

@@ -22,20 +22,18 @@ namespace Cascading.Core.Controllers
         {
             var categories = _context.Categories.ToList();
             var product = new List<Product>();
+            //categories.Add(new Category()
+            //{
+            //    Id = 0
+            //});
 
-            categories.Add(new Category()
-            {
-                Id = 0,
-                CategoryName = "--Select Category--"
-            });
-
-            product.Add(new Product()
-            {
-                Id = 0,
-                Name = "--Select Product--"
-            });
-
+            //product.Add(new Product()
+            //{
+            //    Id = 0
+            //});
+            
             ViewBag.categories = new SelectList(categories, "Id", "CategoryName");
+
             ViewBag.Products = new SelectList(product, "Id", "Name");
             return View();
         }
@@ -50,5 +48,11 @@ namespace Cascading.Core.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public JsonResult GetProductByCategoryId(int categoryId)
+        {
+            return Json(_context.Products.Where(u => u.CategoryId == categoryId).ToList());
+        }
+       
     }
 }
